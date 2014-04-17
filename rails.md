@@ -48,3 +48,21 @@ user.licenses.count == 0
 user.licenses.present?
 user.licenses.empty?
 ```
+
+Do not prefix method name with is, get or set.
+
+```ruby
+# bad
+class Video
+  def is_available?; end
+  def get_video_picture; end
+  def set_video_picture(pic); end
+end
+
+# good
+class Video
+  def available?; end
+  def video_picture; end
+  def video_picture=(pic); end
+end
+```
