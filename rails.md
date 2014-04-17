@@ -66,3 +66,51 @@ class Video
   def video_picture=(pic); end
 end
 ```
+
+Avoid assignments in case/if statement branches
+
+```ruby
+# bad
+kind = ''
+
+case year
+when 1850..1889
+  kind = 'Blues'
+when 1890..1909
+  kind = 'Ragtime'
+when 1910..1929
+  kind = 'New Orleans Jazz'
+when 1930..1939
+  kind = 'Swing'
+when 1940..1950
+  kind = 'Bebop'
+else
+  kind = 'Jazz'
+end
+
+result = 0
+
+if some_cond
+  result = calc_something
+else
+  result = calc_something_else
+end
+
+# good
+kind =
+  case year
+  when 1850..1889 then 'Blues'
+  when 1890..1909 then 'Ragtime'
+  when 1910..1929 then 'New Orleans Jazz'
+  when 1930..1939 then 'Swing'
+  when 1940..1950 then 'Bebop'
+  else 'Jazz'
+  end
+
+result =
+  if some_cond
+    calc_something
+  else
+    calc_something_else
+  end
+```
