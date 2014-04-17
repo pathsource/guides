@@ -1,6 +1,6 @@
 Use `find_each` instead of `each` on ActiveRecord relations
 
-```rb
+```ruby
 # bad
 # very inefficient since it will try to instantiate all the objects at once
 Person.all.each do |person|
@@ -29,4 +29,22 @@ end
 def current_user
   @current_user ||= User.find(session[:user_id])
 end
+```
+
+Use `present?`, `empty?` and `blank?` on ActiveRecord relations
+
+```ruby
+class User < ActiveRecord::Base
+  has_many :licenses
+end
+
+user = User.find(1)
+
+# bad
+user.licenses.count > 0
+user.licenses.count == 0
+
+# good
+user.licenses.present?
+user.licenses.empty?
 ```
