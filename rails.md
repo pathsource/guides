@@ -114,3 +114,14 @@ result =
     calc_something_else
   end
 ```
+
+WhereChain.not
+http://api.rubyonrails.org/classes/ActiveRecord/QueryMethods/WhereChain.html#method-i-not
+
+```ruby
+# bad
+User.where('name != ?', nil)
+
+# good
+User.where.not(name: nil)
+```
