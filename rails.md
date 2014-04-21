@@ -125,3 +125,16 @@ User.where('name != ?', nil)
 # good
 User.where.not(name: nil)
 ```
+
+Use update_all
+
+```ruby
+# bad
+HomeworkAnswer.where(homework_id: homework_id).each do |answer|
+  answer.status = 2
+  answer.save
+end
+
+# good
+HomeworkAnswer.where(homework_id: homework_id).update_all(status: 2)
+```
