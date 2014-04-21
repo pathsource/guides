@@ -138,3 +138,23 @@ end
 # good
 HomeworkAnswer.where(homework_id: homework_id).update_all(status: 2)
 ```
+
+`exists?` with params
+http://api.rubyonrails.org/classes/ActiveRecord/FinderMethods.html#method-i-exists-3F
+
+```ruby
+# bad
+curriculum_details.where(lesson_plan_id: lesson_plan_id).exists?
+
+# good
+curriculum_details.where(lesson_plan_id: lesson_plan_id).exists?
+
+# examples
+Person.exists?(5)
+Person.exists?('5')
+Person.exists?(['name LIKE ?', "%#{query}%"])
+Person.exists?(id: [1, 4, 8])
+Person.exists?(name: 'David')
+Person.exists?(false)
+Person.exists?
+```
